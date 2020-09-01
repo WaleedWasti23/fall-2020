@@ -1,0 +1,974 @@
+julia> #TexTables wasn't in the instructions but I think it is needed for freqtable
+
+julia> 
+
+julia> #q1,q2,q3 should run before declaration of q4 since q3 generates "nlsw88.jld"
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> Random.seed!(1234)
+MersenneTwister(UInt32[0x000004d2], Random.DSFMT.DSFMT_state(Int32[-1393240018, 1073611148, 45497681, 1072875908, 436273599, 1073674613, -2043716458, 1073445557, -254908435, 1072827086  …  -599655111, 1073144102, 367655457, 1072985259, -1278750689, 1018350124, -597141475, 249849711, 382, 0]), [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  …  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], UInt128[0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000  …  0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000, 0x00000000000000000000000000000000], 1002, 0)
+
+julia> 
+
+julia> #Question 1
+
+julia> 
+
+julia> function q1()
+
+           Random.seed!(1234)
+
+
+ERROR: syntax: incomplete: "function" at none:1 requires end
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     #1.a
+
+julia> 
+
+julia>     #1.a.i
+
+julia> 
+
+julia>     A=rand(Uniform(-5,10),(10,7))
+10×7 Array{Float64,2}:
+  3.86267    4.73323    9.25748    8.96673   -4.30567    4.88222    4.65556
+  6.50196   -4.83641    9.47005    1.58408    5.47533    2.73441    1.02131
+  3.49356   -4.00365    9.18663   -1.29706    0.476641  -1.08927    2.87586
+  1.90128    9.3513     6.84856   -4.82271   -0.462833   3.93281    4.18015
+  6.91039    4.70036    7.31741   -4.30936    0.588632  -0.613077   1.48865
+  7.8122    -3.31271   -4.4876     2.44253   -2.74238   -0.671302  -3.76689
+ -1.99121   -0.859686  -3.58183    5.98001   -2.79006    4.2724    -2.01413
+ -0.520786   4.77496   -0.276107  -0.514137  -0.74898    4.9639     3.64123
+ -1.29744   -4.15036   -3.08285    1.73773    1.07429    6.30262   -1.72734
+  3.69508    7.6407     0.612801   8.12644    2.49296   -4.44674    0.430533
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #1.a.ii
+
+julia> 
+
+julia>     B=rand(Normal(-2,15),(10,7))
+10×7 Array{Float64,2}:
+   0.73882    -13.0124    -16.717      0.759646    7.79041     6.69775     2.32697
+  28.953        1.89506    -6.7458   -21.1452     -0.435064    1.57426   -21.9375
+ -23.2179     -17.7292      1.98614   13.4698      9.12677    33.5317     55.6956
+   0.0171313    0.994137   13.9842   -15.6621    -15.2981     -3.50657    10.5644
+ -13.2563     -14.1017     18.7752     9.31905    23.56       -2.90555    -6.87955
+   0.561669     0.967062   -0.80073  -21.4212     -8.90916     4.44054    -6.97473
+ -25.7738     -19.3299    -14.5005    -6.63415    18.7093    -16.2828     30.492
+ -31.625       10.2806     -8.6487    17.6003     -1.82674    10.2093    -12.6817
+  -0.853731     0.269651  -26.9484    19.7329     -9.83497    11.2862    -16.57
+   9.99003     16.7085     -9.81844    9.67226    -8.42817     0.690528  -11.5884
+
+julia> 
+
+julia>     #1.a.iii
+
+julia> 
+
+julia>     C= [A[1:5,1:5] B[1:5,6:7]]
+5×7 Array{Float64,2}:
+ 3.86267   4.73323  9.25748   8.96673  -4.30567    6.69775    2.32697
+ 6.50196  -4.83641  9.47005   1.58408   5.47533    1.57426  -21.9375
+ 3.49356  -4.00365  9.18663  -1.29706   0.476641  33.5317    55.6956
+ 1.90128   9.3513   6.84856  -4.82271  -0.462833  -3.50657   10.5644
+ 6.91039   4.70036  7.31741  -4.30936   0.588632  -2.90555   -6.87955
+
+julia> 
+
+julia>     #1.a.iv
+
+julia> 
+
+julia>     D=(A.<=0).*A
+10×7 Array{Float64,2}:
+  0.0        0.0        0.0        0.0       -4.30567    0.0        0.0
+  0.0       -4.83641    0.0        0.0        0.0        0.0        0.0
+  0.0       -4.00365    0.0       -1.29706    0.0       -1.08927    0.0
+  0.0        0.0        0.0       -4.82271   -0.462833   0.0        0.0
+  0.0        0.0        0.0       -4.30936    0.0       -0.613077   0.0
+  0.0       -3.31271   -4.4876     0.0       -2.74238   -0.671302  -3.76689
+ -1.99121   -0.859686  -3.58183    0.0       -2.79006    0.0       -2.01413
+ -0.520786   0.0       -0.276107  -0.514137  -0.74898    0.0        0.0
+ -1.29744   -4.15036   -3.08285    0.0        0.0        0.0       -1.72734
+  0.0        0.0        0.0        0.0        0.0       -4.44674    0.0
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #1.b
+
+julia> 
+
+julia>     length(A)
+70
+
+julia> 
+
+julia>     #1.c
+
+julia> 
+
+julia>     unique(D)
+29-element Array{Float64,1}:
+  0.0
+ -1.9912094759923837
+ -0.5207858248488231
+ -1.2974422008498654
+ -4.83641165546607
+  ⋮
+ -0.671302240907659
+ -4.446737263717075
+ -3.766894568055581
+ -2.0141301468638084
+ -1.727344010473788
+
+julia> 
+
+julia>     #1.d
+
+julia> 
+
+julia>     E=reshape(B,70,1)
+70×1 Array{Float64,2}:
+   0.7388198935443135
+  28.95298708966839
+ -23.217921470798856
+   0.017131326864824103
+ -13.256307606620506
+   ⋮
+  -6.974732388028951
+  30.491999873019076
+ -12.68171738101507
+ -16.570011717567688
+ -11.58844094728918
+
+julia> 
+
+julia>     E=vec(B) #an easier way to accomplish it
+70-element Array{Float64,1}:
+   0.7388198935443135
+  28.95298708966839
+ -23.217921470798856
+   0.017131326864824103
+ -13.256307606620506
+   ⋮
+  -6.974732388028951
+  30.491999873019076
+ -12.68171738101507
+ -16.570011717567688
+ -11.58844094728918
+
+julia> 
+
+julia>     #1.e
+
+julia> 
+
+julia>     F=cat(A, B;dims=3)
+10×7×2 Array{Float64,3}:
+[:, :, 1] =
+  3.86267    4.73323    9.25748    8.96673   -4.30567    4.88222    4.65556
+  6.50196   -4.83641    9.47005    1.58408    5.47533    2.73441    1.02131
+  3.49356   -4.00365    9.18663   -1.29706    0.476641  -1.08927    2.87586
+  1.90128    9.3513     6.84856   -4.82271   -0.462833   3.93281    4.18015
+  6.91039    4.70036    7.31741   -4.30936    0.588632  -0.613077   1.48865
+  7.8122    -3.31271   -4.4876     2.44253   -2.74238   -0.671302  -3.76689
+ -1.99121   -0.859686  -3.58183    5.98001   -2.79006    4.2724    -2.01413
+ -0.520786   4.77496   -0.276107  -0.514137  -0.74898    4.9639     3.64123
+ -1.29744   -4.15036   -3.08285    1.73773    1.07429    6.30262   -1.72734
+  3.69508    7.6407     0.612801   8.12644    2.49296   -4.44674    0.430533
+
+[:, :, 2] =
+   0.73882    -13.0124    -16.717      0.759646    7.79041     6.69775     2.32697
+  28.953        1.89506    -6.7458   -21.1452     -0.435064    1.57426   -21.9375
+ -23.2179     -17.7292      1.98614   13.4698      9.12677    33.5317     55.6956
+   0.0171313    0.994137   13.9842   -15.6621    -15.2981     -3.50657    10.5644
+ -13.2563     -14.1017     18.7752     9.31905    23.56       -2.90555    -6.87955
+   0.561669     0.967062   -0.80073  -21.4212     -8.90916     4.44054    -6.97473
+ -25.7738     -19.3299    -14.5005    -6.63415    18.7093    -16.2828     30.492
+ -31.625       10.2806     -8.6487    17.6003     -1.82674    10.2093    -12.6817
+  -0.853731     0.269651  -26.9484    19.7329     -9.83497    11.2862    -16.57
+   9.99003     16.7085     -9.81844    9.67226    -8.42817     0.690528  -11.5884
+
+julia> 
+
+julia>     #1.f
+
+julia> 
+
+julia>     F=permutedims(F,(3,1,2))
+2×10×7 Array{Float64,3}:
+[:, :, 1] =
+ 3.86267   6.50196    3.49356  1.90128      6.91039  7.8122     -1.99121   -0.520786  -1.29744   3.69508
+ 0.73882  28.953    -23.2179   0.0171313  -13.2563   0.561669  -25.7738   -31.625     -0.853731  9.99003
+
+[:, :, 2] =
+   4.73323  -4.83641   -4.00365  9.3513      4.70036  -3.31271    -0.859686   4.77496  -4.15036    7.6407
+ -13.0124    1.89506  -17.7292   0.994137  -14.1017    0.967062  -19.3299    10.2806    0.269651  16.7085
+
+[:, :, 3] =
+   9.25748   9.47005  9.18663   6.84856   7.31741  -4.4876    -3.58183  -0.276107   -3.08285   0.612801
+ -16.717    -6.7458   1.98614  13.9842   18.7752   -0.80073  -14.5005   -8.6487    -26.9484   -9.81844
+
+[:, :, 4] =
+ 8.96673     1.58408  -1.29706   -4.82271  -4.30936    2.44253   5.98001  -0.514137   1.73773  8.12644
+ 0.759646  -21.1452   13.4698   -15.6621    9.31905  -21.4212   -6.63415  17.6003    19.7329   9.67226
+
+[:, :, 5] =
+ -4.30567   5.47533   0.476641   -0.462833   0.588632  -2.74238  -2.79006  -0.74898   1.07429   2.49296
+  7.79041  -0.435064  9.12677   -15.2981    23.56      -8.90916  18.7093   -1.82674  -9.83497  -8.42817
+
+[:, :, 6] =
+ 4.88222  2.73441  -1.08927   3.93281  -0.613077  -0.671302    4.2724   4.9639   6.30262  -4.44674
+ 6.69775  1.57426  33.5317   -3.50657  -2.90555    4.44054   -16.2828  10.2093  11.2862    0.690528
+
+[:, :, 7] =
+ 4.65556    1.02131   2.87586   4.18015   1.48865  -3.76689  -2.01413    3.64123   -1.72734    0.430533
+ 2.32697  -21.9375   55.6956   10.5644   -6.87955  -6.97473  30.492    -12.6817   -16.57     -11.5884
+
+julia> 
+
+julia>     #1.g
+
+julia> 
+
+julia>     G=kron(B,C)
+50×49 Array{Float64,2}:
+  2.85382    3.497     6.83961    6.6248     -3.18111     4.94843     1.71921  …    21.5419    20.8653   -10.0192     15.5855      5.41481
+  4.80377   -3.57324   6.99666    1.17035     4.04528     1.1631    -16.2079        22.0365     3.68612   12.741       3.66326   -51.048
+  2.58111   -2.95798   6.78727   -0.958296    0.352151   24.7739     41.149         21.377     -3.01823    1.10913    78.0274    129.602     
+  1.4047     6.90893   5.05985   -3.56311    -0.34195    -2.59072     7.8052        15.9364   -11.2223    -1.077      -8.15969    24.5831
+  5.10553    3.47272   5.40625   -3.18384     0.434893   -2.14668    -5.08275       17.0274   -10.0278     1.36973    -6.76114   -16.0085    
+  ⋮                                                       ⋮                    ⋱                ⋮
+ 38.5882    47.2851   92.4824    89.5779    -43.0138     66.9107     23.2465   …  -107.28    -103.91      49.896     -77.6164    -26.966
+ 64.9547   -48.3159   94.606     15.825      54.6987     15.7269   -219.156       -109.743    -18.3571   -63.4506    -18.2432    254.222
+ 34.9008   -39.9966   91.7747   -12.9577      4.76165   334.983     556.401       -106.459     15.0309    -5.52352  -388.58     -645.425
+ 18.9938    93.4197   68.4173   -48.179      -4.62372   -35.0307    105.539        -79.3641    55.8876     5.36351    40.6357   -122.425
+ 69.0349    46.9568   73.1011   -43.0506      5.88045   -29.0265    -68.7269       -84.7973    49.9387    -6.82132    33.6708     79.7233
+
+julia> 
+
+julia>     #kron(C,F) is not possible as F is not vectorized properly.
+
+julia> 
+
+julia>     #1.h
+
+julia> 
+
+julia>     JLD2.@save "matrixpractice.jld2" A B C D E F G
+
+julia> 
+
+julia>     #1.i
+
+julia> 
+
+julia>     JLD2.@save "firstmatrix.jld2" A B C D
+
+julia> 
+
+julia>     #1.j
+
+julia> 
+
+julia>     df=DataFrame(C)
+5×7 DataFrame
+│ Row │ x1      │ x2       │ x3      │ x4       │ x5        │ x6       │ x7       │
+│     │ Float64 │ Float64  │ Float64 │ Float64  │ Float64   │ Float64  │ Float64  │
+├─────┼─────────┼──────────┼─────────┼──────────┼───────────┼──────────┼──────────┤
+│ 1   │ 3.86267 │ 4.73323  │ 9.25748 │ 8.96673  │ -4.30567  │ 6.69775  │ 2.32697  │
+│ 2   │ 6.50196 │ -4.83641 │ 9.47005 │ 1.58408  │ 5.47533   │ 1.57426  │ -21.9375 │
+│ 3   │ 3.49356 │ -4.00365 │ 9.18663 │ -1.29706 │ 0.476641  │ 33.5317  │ 55.6956  │
+│ 4   │ 1.90128 │ 9.3513   │ 6.84856 │ -4.82271 │ -0.462833 │ -3.50657 │ 10.5644  │
+│ 5   │ 6.91039 │ 4.70036  │ 7.31741 │ -4.30936 │ 0.588632  │ -2.90555 │ -6.87955 │
+
+julia> 
+
+julia>     CSV.write("Cmatrix.csv",df)
+"Cmatrix.csv"
+
+julia> 
+
+julia>     #1.k
+
+julia> 
+
+julia>     dfD=DataFrame(D)
+10×7 DataFrame
+│ Row │ x1        │ x2        │ x3        │ x4        │ x5       │ x6       │ x7       │
+│     │ Float64   │ Float64   │ Float64   │ Float64   │ Float64  │ Float64  │ Float64  │
+├─────┼───────────┼───────────┼───────────┼───────────┼──────────┼──────────┼──────────┤
+│ 1   │ 0.0       │ 0.0       │ 0.0       │ 0.0       │ -4.30567 │ 0.0      │ 0.0      │
+│ 2   │ 0.0       │ -4.83641  │ 0.0       │ 0.0       │ 0.0      │ 0.0      │ 0.0      │
+│ 3   │ 0.0       │ -4.00365  │ 0.0       │ -1.29706  │ 0.0      │ -1.08927 │ 0.0      │
+⋮
+│ 7   │ -1.99121  │ -0.859686 │ -3.58183  │ 0.0       │ -2.79006 │ 0.0      │ -2.01413 │
+│ 8   │ -0.520786 │ 0.0       │ -0.276107 │ -0.514137 │ -0.74898 │ 0.0      │ 0.0      │
+│ 9   │ -1.29744  │ -4.15036  │ -3.08285  │ 0.0       │ 0.0      │ 0.0      │ -1.72734 │
+│ 10  │ 0.0       │ 0.0       │ 0.0       │ 0.0       │ 0.0      │ -4.44674 │ 0.0      │
+
+julia> 
+
+julia>     CSV.write("Dmatrix.dat",df,delim='\t')
+"Dmatrix.dat"
+
+julia> 
+
+julia>     return A,B,C,D
+([3.8626695799856527 4.733229253140182 … 4.882221756002442 4.655564217740494; 6.501955547533887 -4.83641165546607 … 2.734408269692884 1.021308480057245; … ; -1.2974422008498654 -4.1503629709518215 … 6.302621766564982 -1.727344010473788; 3.695083500535624 7.640704248798281 … -4.446737263717075 0.43053289308079723], [0.7388198935443135 -13.012420762526913 … 6.697747142056501 2.3269734336374963; 28.95298708966839 1.8950595152946734 … 1.5742610909088062 -21.937512354780477; … ; -0.8537306155079312 0.269650514966719 … 11.286229586575026 -16.570011717567688; 9.990027487986394 16.708476741710527 … 0.6905276245415259 -11.58844094728918], [3.8626695799856527 4.733229253140182 … 6.697747142056501 2.3269734336374963; 6.501955547533887 -4.83641165546607 … 1.5742610909088062 -21.937512354780477; … ; 1.901280136937756 9.351300454043855 … -3.5065682667357763 10.564413073741656; 6.910385654976913 4.7003647229746885 … -2.905551936239892 -6.879553462102997], [0.0 0.0 … 0.0 0.0; 0.0 -4.83641165546607 … 0.0 0.0; … ; -1.2974422008498654 -4.1503629709518215 … 0.0 -1.727344010473788; 0.0 0.0 … -4.446737263717075 0.0])
+
+julia> 
+
+julia> end
+ERROR: syntax: unexpected "end"
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #Question 2
+
+julia> 
+
+julia> function q2(a,b,c)
+
+           #2.a
+
+           n=length(A)
+
+           AB=zeros(size(A))
+
+
+ERROR: syntax: incomplete: "function" at none:1 requires end
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     for i=1:n
+
+               AB[i]=A[i]*B[i]
+
+           end
+ERROR: UndefVarError: n not defined
+Stacktrace:
+ [1] top-level scope at .\none:1
+
+julia> 
+
+julia>     AB2=A.*B
+10×7 Array{Float64,2}:
+   2.85382    -61.5908   -154.757      6.81154  -33.5429    32.6999    10.8334
+ 188.251       -9.16529   -63.8831   -33.4958    -2.38212    4.30467  -22.405
+ -81.1132      70.9815     18.2459   -17.4712     4.35019  -36.5252   160.173
+   0.0325715    9.29647    95.7712    75.5336     7.08045  -13.7907    44.1608
+ -91.6062     -66.2832    137.385    -40.1591    13.8682     1.78133  -10.2412
+   4.38787     -3.2036      3.59335  -52.3219    24.4323    -2.98094   26.2731
+  51.3211      16.6176     51.9385   -39.6723   -52.1999   -69.5668   -61.4149
+  16.4699      49.0897      2.38796   -9.04894    1.36819   50.678    -46.177
+   1.10767     -1.11915    83.0779    34.2905   -10.5656    71.1328    28.6221
+  36.914      127.665      -6.01674   78.6011   -21.0111    -3.07059   -4.98921
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #2.b
+
+julia> 
+
+julia>     n=length(C)
+35
+
+julia> 
+
+julia>     Cprime=[]
+Any[]
+
+julia> 
+
+julia>     for i=1:n
+
+               if -5<=C[i]<=5
+
+                   append!(Cprime,C[i])
+
+               end
+
+           end    
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     Cprime2=[x for x in C if -5<=x<=5]
+19-element Array{Float64,1}:
+  3.8626695799856527
+  3.4935612475927886
+  1.901280136937756
+  4.733229253140182
+ -4.83641165546607
+  ⋮
+  0.5886316239951803
+  1.5742610909088062
+ -3.5065682667357763
+ -2.905551936239892
+  2.3269734336374963
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #2.c
+
+julia> 
+
+julia>     X=permutedims(
+
+           cat(ones(15169,5),
+
+           [rand(Bernoulli(.75*(6-y)/5)) for x in 1:15169,y in 1:5],
+
+           [rand(Normal(15+y-1,5(y-1))) for x in 1:15169,y in 1:5],
+
+           [rand(Normal(π*(6-y)/3,1/ℯ)) for x in 1:15169,y in 1:5],
+
+               rand(Binomial(20,0.6),15169,5),
+
+                   rand(Binomial(20,0.5),15169,5);
+
+                       dims=3),(1,3,2))
+15169×6×5 Array{Float64,3}:
+[:, :, 1] =
+ 1.0  1.0  15.0  5.15189  13.0   8.0
+ 1.0  1.0  15.0  5.41894  12.0   9.0
+ 1.0  1.0  15.0  5.26897  11.0  12.0
+ 1.0  1.0  15.0  5.20512  14.0   8.0
+ 1.0  1.0  15.0  5.11313  13.0  13.0
+ ⋮                               ⋮
+ 1.0  0.0  15.0  5.33144  12.0   6.0
+ 1.0  1.0  15.0  5.3341   14.0  10.0
+ 1.0  1.0  15.0  5.51571  15.0   9.0
+ 1.0  1.0  15.0  4.95377   9.0   9.0
+ 1.0  1.0  15.0  5.16442  14.0  13.0
+
+[:, :, 2] =
+ 1.0  0.0   5.87728  3.77854  12.0  11.0
+ 1.0  0.0  13.0863   4.3409   18.0  12.0
+ 1.0  0.0  13.31     4.46733  10.0  11.0
+ 1.0  0.0  18.9148   3.19422  13.0  12.0
+ 1.0  1.0   8.95245  4.95357  12.0  12.0
+ ⋮                                   ⋮
+ 1.0  0.0  15.7617   4.49903  12.0  10.0
+ 1.0  1.0  14.0521   4.17453  11.0  10.0
+ 1.0  0.0  20.1929   4.29945  15.0  10.0
+ 1.0  1.0  24.9858   4.31038  10.0   9.0
+ 1.0  0.0  19.7254   3.51987  11.0   8.0
+
+[:, :, 3] =
+ 1.0  0.0  17.0281   3.10018   9.0  11.0
+ 1.0  0.0  25.8319   3.13144  11.0   8.0
+ 1.0  0.0  24.4608   2.91971  13.0  15.0
+ 1.0  0.0  31.9389   3.15962  10.0  11.0
+ 1.0  0.0   9.37486  3.18547   9.0  11.0
+ ⋮                                   ⋮
+ 1.0  0.0  14.3606   3.18092  11.0  11.0
+ 1.0  0.0  31.9894   2.61403  10.0  12.0
+ 1.0  1.0  -2.38163  2.51855  10.0   5.0
+ 1.0  1.0  16.8309   2.84615  14.0  10.0
+ 1.0  0.0  17.7335   3.00073  12.0   4.0
+
+[:, :, 4] =
+ 1.0  0.0  25.3853   2.06433   9.0  12.0
+ 1.0  1.0   7.03227  2.06415  10.0   9.0
+ 1.0  1.0  51.7939   2.10483  13.0  10.0
+ 1.0  1.0  26.5685   1.9078   14.0  14.0
+ 1.0  0.0  25.5881   2.03718  14.0  10.0
+ ⋮                                   ⋮
+ 1.0  1.0  23.0246   2.45773   9.0   9.0
+ 1.0  0.0  30.2326   2.56887  12.0   8.0
+ 1.0  1.0   7.5865   2.67146  11.0  10.0
+ 1.0  1.0  -5.61154  2.67748  11.0  15.0
+ 1.0  1.0  35.2496   1.39712   8.0  14.0
+
+[:, :, 5] =
+ 1.0  0.0  17.9587   1.38106   12.0  14.0
+ 1.0  0.0  -2.82769  0.722443   8.0   7.0
+ 1.0  0.0  21.2164   0.833479  13.0  10.0
+ 1.0  0.0  32.5063   0.825666  15.0   9.0
+ 1.0  0.0  25.0742   1.63847   11.0   8.0
+ ⋮                                    ⋮
+ 1.0  0.0  20.3941   1.08711   12.0   9.0
+ 1.0  0.0  21.6287   1.38689   11.0  11.0
+ 1.0  1.0  -2.7666   1.07856   13.0  10.0
+ 1.0  1.0   2.08549  0.837985  12.0   7.0
+ 1.0  0.0  26.9553   1.4858    14.0   9.0
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #2.d
+
+julia> 
+
+julia>     β=hcat([[1+.25*(t-1), log(t), -sqrt(t), ℯ^t-ℯ^(t+1), t, t/3] for t in 1:5]...)
+6×5 Array{Float64,2}:
+  1.0         1.25        1.5        1.75        2.0
+  0.0         0.693147    1.09861    1.38629     1.60944
+ -1.0        -1.41421    -1.73205   -2.0        -2.23607
+ -4.67077   -12.6965    -34.5126   -93.815    -255.016
+  1.0         2.0         3.0        4.0         5.0
+  0.333333    0.666667    1.0        1.33333     1.66667
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #2.e
+
+julia> 
+
+julia>     Y=hcat([X[:,:,i]*β[:,i].+rand(Normal(0,.36)) for i in 1:5]...)
+15169×5 Array{Float64,2}:
+ -22.2959  -23.5226   -96.9126  -190.538  -306.745
+ -24.2099  -28.191   -110.24    -152.429  -123.975
+ -23.5094  -46.7793   -87.5581  -232.435  -176.055
+ -21.5445  -31.8749  -121.79    -154.167  -190.974
+ -20.4482  -41.4304   -86.6006  -171.063  -403.299
+   ⋮
+ -24.8012  -47.3157   -89.0792  -225.337  -245.562
+ -21.4803  -42.0849  -102.048   -240.9    -326.437
+ -21.6619  -45.0483   -45.1221  -205.179  -183.318
+ -25.0372  -61.9389   -72.7054  -172.681  -142.816
+ -19.6877  -43.8227   -92.7023  -147.62   -351.907
+
+julia> 
+
+julia>     return
+
+julia> 
+
+julia> end
+ERROR: syntax: unexpected "end"
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #Question 3
+
+julia> 
+
+julia> function q3()
+
+           #3.a
+
+           #workspace() not supported on my version anymore
+
+           df=CSV.read("nlsw88.csv"; header=true,missingstring="")
+
+               JLD2.@save "nlsw88.jld" df
+
+
+ERROR: syntax: incomplete: "function" at none:1 requires end
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     #3.b
+
+julia> 
+
+julia>     describe(df)
+7×8 DataFrame
+│ Row │ variable │ mean     │ min      │ median   │ max     │ nunique │ nmissing │ eltype   │
+│     │ Symbol   │ Float64  │ Float64  │ Float64  │ Float64 │ Nothing │ Nothing  │ DataType │
+├─────┼──────────┼──────────┼──────────┼──────────┼─────────┼─────────┼──────────┼──────────┤
+│ 1   │ x1       │ 4.53397  │ 1.90128  │ 3.86267  │ 6.91039 │         │          │ Float64  │
+│ 2   │ x2       │ 1.98897  │ -4.83641 │ 4.70036  │ 9.3513  │         │          │ Float64  │
+│ 3   │ x3       │ 8.41602  │ 6.84856  │ 9.18663  │ 9.47005 │         │          │ Float64  │
+│ 4   │ x4       │ 0.024337 │ -4.82271 │ -1.29706 │ 8.96673 │         │          │ Float64  │
+│ 5   │ x5       │ 0.354421 │ -4.30567 │ 0.476641 │ 5.47533 │         │          │ Float64  │
+│ 6   │ x6       │ 7.07832  │ -3.50657 │ 1.57426  │ 33.5317 │         │          │ Float64  │
+│ 7   │ x7       │ 7.95398  │ -21.9375 │ 2.32697  │ 55.6956 │         │          │ Float64  │
+
+julia> 
+
+julia>     # the mean of neve_married is 0.104185 and married is {0,1}. so 10.4185% are never_married.
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #3.c
+
+julia> 
+
+julia>     tabulate(df,:race)
+┌ Warning: `by(f::Base.Callable, d::AbstractDataFrame, cols::Any; sort::Bool = false, skipmissing::Bool = false)` is deprecated, use `combine(f, groupby(d, cols, sort = sort, skipmissing = skipmissing))` instead.
+│   caller = tabulate(::DataFrame, ::Symbol) at QuickTools.jl:91
+└ @ TexTables C:\Users\walee\.julia\packages\TexTables\LKVnS\src\QuickTools.jl:91
+ERROR: ArgumentError: column name :race not found in the data frame
+Stacktrace:
+ [1] lookupname at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:286 [inlined]
+ [2] getindex at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:295 [inlined]
+ [3] groupby(::DataFrame, ::Symbol; sort::Bool, skipmissing::Bool) at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\groupeddataframe\splitapplycombine.jl:139
+ [4] by(::Function, ::DataFrame, ::Symbol; sort::Bool, skipmissing::Bool) at .\deprecated.jl:72
+ [5] by(::Function, ::DataFrame, ::Symbol) at .\deprecated.jl:71
+ [6] tabulate(::DataFrame, ::Symbol) at C:\Users\walee\.julia\packages\TexTables\LKVnS\src\QuickTools.jl:91
+ [7] top-level scope at none:1
+
+julia> 
+
+julia>     #I think taubulate is in TexTables package but it wasn't listed in the required package list.
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #3.d
+
+julia> 
+
+julia>     summary_df=describe(df, :mean, :median, :std, :min, :max, :nunique, :q75, :q25)
+7×9 DataFrame
+│ Row │ variable │ mean     │ median   │ std     │ min      │ max     │ nunique │ q75      │ q25       │
+│     │ Symbol   │ Float64  │ Float64  │ Float64 │ Float64  │ Float64 │ Nothing │ Float64  │ Float64   │
+├─────┼──────────┼──────────┼──────────┼─────────┼──────────┼─────────┼─────────┼──────────┼───────────┤
+│ 1   │ x1       │ 4.53397  │ 3.86267  │ 2.1204  │ 1.90128  │ 6.91039 │         │ 6.50196  │ 3.49356   │
+│ 2   │ x2       │ 1.98897  │ 4.70036  │ 6.15597 │ -4.83641 │ 9.3513  │         │ 4.73323  │ -4.00365  │
+│ 3   │ x3       │ 8.41602  │ 9.18663  │ 1.23255 │ 6.84856  │ 9.47005 │         │ 9.25748  │ 7.31741   │
+│ 4   │ x4       │ 0.024337 │ -1.29706 │ 5.62183 │ -4.82271 │ 8.96673 │         │ 1.58408  │ -4.30936  │
+│ 5   │ x5       │ 0.354421 │ 0.476641 │ 3.48848 │ -4.30567 │ 5.47533 │         │ 0.588632 │ -0.462833 │
+│ 6   │ x6       │ 7.07832  │ 1.57426  │ 15.3455 │ -3.50657 │ 33.5317 │         │ 6.69775  │ -2.90555  │
+│ 7   │ x7       │ 7.95398  │ 2.32697  │ 29.2885 │ -21.9375 │ 55.6956 │         │ 10.5644  │ -6.87955  │
+
+julia> 
+
+julia>     summary_df[!, :intq] = summary_df[:, :q75] - summary_df[:, :q25]
+7-element Array{Float64,1}:
+  3.0083942999410986
+  8.736883698810122
+  1.940069802105132
+  5.893441994017842
+  1.0514647316434322
+  9.603299078296393
+ 17.443966535844652
+
+julia> 
+
+julia>     summarystats=Matrix(summary_df[:,Not([:variable,:q25,:q75])])
+7×7 Array{Union{Nothing, Float64},2}:
+ 4.53397    3.86267    2.1204     1.90128   6.91039  nothing   3.00839
+ 1.98897    4.70036    6.15597   -4.83641   9.3513   nothing   8.73688
+ 8.41602    9.18663    1.23255    6.84856   9.47005  nothing   1.94007
+ 0.024337  -1.29706    5.62183   -4.82271   8.96673  nothing   5.89344
+ 0.354421   0.476641   3.48848   -4.30567   5.47533  nothing   1.05146
+ 7.07832    1.57426   15.3455    -3.50657  33.5317   nothing   9.6033
+ 7.95398    2.32697   29.2885   -21.9375   55.6956   nothing  17.444
+
+julia> 
+
+julia>     #from 3.b there are two observations missing.
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #3.e
+
+julia> 
+
+julia>     freqtable(df[:,:industry],df[:,:occupation])
+ERROR: ArgumentError: column name :industry not found in the data frame
+Stacktrace:
+ [1] lookupname at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:286 [inlined]
+ [2] getindex at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:295 [inlined]
+ [3] getindex(::DataFrame, ::Colon, ::Symbol) at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\dataframe\dataframe.jl:421
+ [4] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     #3.f
+
+julia> 
+
+julia>     df_f=df[:,[:industry, :occupation , :wage]]
+ERROR: ArgumentError: column name :industry not found in the data frame
+Stacktrace:
+ [1] lookupname at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:286 [inlined]
+ [2] getindex at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:295 [inlined]
+ [3] (::DataFrames.var"#29#30"{DataFrames.Index})(::Symbol) at .\none:0
+ [4] iterate at .\generator.jl:47 [inlined]
+ [5] collect(::Base.Generator{Array{Symbol,1},DataFrames.var"#29#30"{DataFrames.Index}}) at .\array.jl:686
+ [6] getindex at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:301 [inlined]
+ [7] manipulate(::DataFrame, ::Array{Symbol,1}; copycols::Bool, keeprows::Bool) at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\abstractdataframe\selection.jl:550
+ [8] #select#296 at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\abstractdataframe\selection.jl:493 [inlined]
+ [9] getindex(::DataFrame, ::Colon, ::Array{Symbol,1}) at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\dataframe\dataframe.jl:468
+ [10] top-level scope at none:1
+
+julia> 
+
+julia>     gdf=groupby(df_f,[:industry, :occupation])
+ERROR: UndefVarError: df_f not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     gdf=combine(gdf, valuecols(gdf) .=> mean)
+ERROR: UndefVarError: gdf not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     freqtable(gdf,:wage_mean,:industry,:occupation);
+ERROR: UndefVarError: gdf not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     return
+
+julia> 
+
+julia> end
+ERROR: syntax: unexpected "end"
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> A,B,C,D=q1()
+ERROR: UndefVarError: q1 not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> q2(A,B,C)
+ERROR: UndefVarError: q2 not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> q3()
+ERROR: UndefVarError: q3 not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #Question4
+
+julia> 
+
+julia> function q4()
+
+           #4.a
+
+           JLD2.@load "firstmatrix.jld2" A B C D
+
+
+ERROR: syntax: incomplete: "function" at none:1 requires end
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     #4.b 4.c 4.e
+
+julia> 
+
+julia>     function matrixops(a,b)
+julia>     function matrixops(a,b)
+
+julia>     function matrixops(a,b)
+
+               #calculate dot product, product and sum of elements for inputs.
+julia>     function matrixops(a,b)
+
+               #calculate dot product, product and sum of elements for inputs.
+
+julia>     function matrixops(a,b)
+
+               #calculate dot product, product and sum of elements for inputs.
+
+               if size(a)==size(b)
+julia>     function matrixops(a,b)
+
+               #calculate dot product, product and sum of elements for inputs.
+
+               if size(a)==size(b)
+
+julia>     function matrixops(a,b)
+
+               #calculate dot product, product and sum of elements for inputs.
+
+               if size(a)==size(b)
+
+                   dProduct=a.*b
+
+                   product=a'*b
+
+                   sprod=sum(a+b)
+
+                   return dProduct, product,sprod
+
+               else
+
+                   println("inputs must have the same size.")
+
+               end
+
+           end
+matrixops (generic function with 1 method)
+
+julia> 
+
+julia>     #4.d
+
+julia> 
+
+julia>     matrixops(A,B)
+([2.8538171278818583 -61.590770607361065 … 32.69988681315143 10.833374253275462; 188.2510350253464 -9.16528792757304 … 4.304672545636781 -22.40496739929788; … ; 1.1076661287175205 -1.1191475124159604 … 71.13283625479745 28.62211049382103; 36.91398574075587 127.66452923133488 … -3.0705949196748366 -4.9892050073323855], [128.61845712341906 -93.35701145864462 … 176.21103131438903 -96.4479991795044; -156.56167122256218 132.28784315917156 … -150.13824342251613 -122.85367524888325; … ; -201.0186092979074 -131.2814168826772 … 34.66255402893455 -44.42587599992297; -113.00639015564434 -47.01606356976808 … 144.28409287544656 124.83476950500862], 75.04454095450816)
+
+julia> 
+
+julia>     #4.f
+
+julia> 
+
+julia>     matrixops(C,D)
+inputs must have the same size.
+
+julia> 
+
+julia>     #4.g
+
+julia> 
+
+julia>     JLD2.@load "nlsw88.jld"
+ERROR: LoadError: SystemError: opening file "nlsw88.jld": No such file or directory
+Stacktrace:
+ [1] systemerror(::String, ::Int32; extrainfo::Nothing) at .\error.jl:168
+ [2] #systemerror#48 at .\error.jl:167 [inlined]
+ [3] systemerror at .\error.jl:167 [inlined]
+ [4] open(::String; lock::Bool, read::Bool, write::Bool, create::Bool, truncate::Bool, append::Bool) at .\iostream.jl:284
+ [5] MmapIO at C:\Users\walee\.julia\packages\JLD2\w2vgv\src\mmapio.jl:100 [inlined]
+ [6] openfile at C:\Users\walee\.julia\packages\JLD2\w2vgv\src\JLD2.jl:194 [inlined]
+ [7] jldopen(::String, ::Bool, ::Bool, ::Bool, ::Type{JLD2.MmapIO}; compress::Bool, mmaparrays::Bool) at C:\Users\walee\.julia\packages\JLD2\w2vgv\src\JLD2.jl:231
+ [8] jldopen at C:\Users\walee\.julia\packages\JLD2\w2vgv\src\JLD2.jl:203 [inlined] (repeats 2 times)
+ [9] jldopen(::String, ::String; kwargs::Base.Iterators.Pairs{Union{},Union{},Tuple{},NamedTuple{(),Tuple{}}}) at C:\Users\walee\.julia\packages\JLD2\w2vgv\src\JLD2.jl:293
+ [10] jldopen at C:\Users\walee\.julia\packages\JLD2\w2vgv\src\JLD2.jl:288 [inlined] (repeats 2 times)
+ [11] @load(::LineNumberNode, ::Module, ::Any, ::Vararg{Any,N} where N) at C:\Users\walee\.julia\packages\JLD2\w2vgv\src\loadsave.jl:64
+in expression starting at none:1
+
+julia> 
+
+julia>     matrixops(convert(Array,df.ttl_exp),convert(Array,df.wage));
+ERROR: ArgumentError: column name :ttl_exp not found in the data frame
+Stacktrace:
+ [1] lookupname at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:286 [inlined]
+ [2] getindex at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\other\index.jl:295 [inlined]
+ [3] getindex(::DataFrame, ::typeof(!), ::Symbol) at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\dataframe\dataframe.jl:435
+ [4] getproperty(::DataFrame, ::Symbol) at C:\Users\walee\.julia\packages\DataFrames\cdZCk\src\abstractdataframe\abstractdataframe.jl:346    
+ [5] top-level scope at none:1
+
+julia> 
+
+julia> end
+ERROR: syntax: unexpected "end"
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> q4()
+ERROR: UndefVarError: q4 not defined
+Stacktrace:
+ [1] top-level scope at none:1
