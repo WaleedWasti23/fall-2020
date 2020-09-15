@@ -1,0 +1,386 @@
+
+julia> df = CSV.read(HTTP.get(url).body)
+2237×13 DataFrame. Omitted printing of 1 columns
+│ Row  │ idcode │ age   │ collgrad │ occupation │ white │ elnwage1 │ elnwage2 │ elnwage3 │ elnwage4 │ elnwage5 │ elnwage6 │ elnwage7 │
+│      │ Int64  │ Int64 │ Int64    │ Int64      │ Int64 │ Float64  │ Float64  │ Float64  │ Float64  │ Float64  │ Float64  │ Float64  │
+├──────┼────────┼───────┼──────────┼────────────┼───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+│ 1    │ 1      │ 37    │ 0        │ 6          │ 0     │ 2.09645  │ 2.06278  │ 1.83843  │ 1.71633  │ 1.82249  │ 1.5234   │ 1.2562   │
+│ 2    │ 2      │ 37    │ 0        │ 5          │ 0     │ 2.16366  │ 2.10306  │ 1.82444  │ 1.90102  │ 1.81032  │ 1.65941  │ 1.43933  │
+│ 3    │ 3      │ 42    │ 0        │ 3          │ 0     │ 2.1454   │ 2.05036  │ 1.80821  │ 1.76591  │ 1.76696  │ 1.67043  │ 1.44196  │
+⋮
+│ 2234 │ 5154   │ 44    │ 1        │ 1          │ 1     │ 2.30519  │ 2.45898  │ 1.9611   │ 1.68555  │ 2.32479  │ 1.28306  │ 1.6159   │
+│ 2235 │ 5156   │ 42    │ 0        │ 3          │ 1     │ 2.10492  │ 2.03769  │ 1.80926  │ 1.71121  │ 1.73998  │ 1.66054  │ 1.46128  │
+│ 2236 │ 5157   │ 38    │ 0        │ 7          │ 0     │ 2.1053   │ 2.05117  │ 1.84266  │ 1.69357  │ 1.77459  │ 1.53816  │ 1.26293  │
+│ 2237 │ 5159   │ 43    │ 0        │ 3          │ 0     │ 2.12301  │ 2.04142  │ 1.79376  │ 1.7325   │ 1.81713  │ 1.6538   │ 1.43319  │
+
+julia> 
+
+julia> X = [df.age df.white df.collgrad]
+2237×3 Array{Int64,2}:
+ 37  0  0
+ 37  0  0
+ 42  0  0
+ 43  1  1
+ 42  1  0
+  ⋮
+ 35  1  0
+ 44  1  1
+ 42  1  0
+ 38  0  0
+ 43  0  0
+
+julia> 
+
+julia> Z = hcat(df.elnwage1, df.elnwage2, df.elnwage3, df.elnwage4, df.elnwage5, df.elnwage6, df.elnwage7, df.elnwage8)
+2237×8 Array{Float64,2}:
+ 2.09645  2.06278  1.83843  1.71633  1.82249  1.5234   1.2562   1.48748
+ 2.16366  2.10306  1.82444  1.90102  1.81032  1.65941  1.43933  1.52887
+ 2.1454   2.05036  1.80821  1.76591  1.76696  1.67043  1.44196  1.65616
+ 2.33383  2.46739  1.97929  1.72109  2.255    1.30597  1.62777  2.19623
+ 2.10492  2.03769  1.80926  1.71121  1.73998  1.66054  1.46128  1.49766
+ ⋮                                            ⋮
+ 2.08675  2.11521  1.80583  1.88546  1.93798  1.60116  1.43589  1.34437
+ 2.30519  2.45898  1.9611   1.68555  2.32479  1.28306  1.6159   2.23592
+ 2.10492  2.03769  1.80926  1.71121  1.73998  1.66054  1.46128  1.49766
+ 2.1053   2.05117  1.84266  1.69357  1.77459  1.53816  1.26293  1.50582
+ 2.12301  2.04142  1.79376  1.7325   1.81713  1.6538   1.43319  1.69229
+
+julia> 
+
+julia> y = df.occupation
+2237-element SentinelArrays.ChainedVector{Int64,Array{Int64,1}}:
+ 6
+ 5
+ 3
+ 8
+ 6
+ ⋮
+ 7
+ 1
+ 3
+ 7
+ 3
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> function mlogit(beta, X, Z, y)
+julia> function mlogit(beta, X, Z, y)
+
+julia> function mlogit(beta, X, Z, y)
+
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))     
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+
+           for j=1:J
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+
+           for j=1:J
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+
+           for j=1:J
+
+               bigY[:,j] = y.==j
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1      
+
+           J = length(unique(y))
+
+           N = length(y)        
+
+           bigY = zeros(N,J)    
+
+           for j=1:J
+
+               bigY[:,j] = y.==j
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)        
+
+           bigY = zeros(N,J)    
+
+           for j=1:J
+
+               bigY[:,j] = y.==j
+
+           end
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+
+           for j=1:J
+
+               bigY[:,j] = y.==j
+
+           end
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+
+           for j=1:J
+
+               bigY[:,j] = y.==j
+
+           end
+
+           bigBeta = [reshape(Beta,K,J-1) zeros(K)]
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)
+
+           bigY = zeros(N,J)
+
+           for j=1:J
+
+               bigY[:,j] = y.==j
+
+           end
+
+           bigBeta = [reshape(Beta,K,J-1) zeros(K)]
+
+julia> function mlogit(beta, X, Z, y)
+
+
+
+           K = size(X,2)+1
+
+           J = length(unique(y))
+
+           N = length(y)        
+
+           bigY = zeros(N,J)    
+
+           for j=1:J
+
+               bigY[:,j] = y.==j
+
+           end
+
+           bigBeta = [reshape(Beta,K,J-1) zeros(K)]
+
+
+
+           num = zeros(N,J)
+
+           dem = zeros(N)
+
+           for j=1:J
+
+               num[:,j] = exp.(X*bigBeta[:,j])
+
+               dem .+= num[:,j]
+
+           end
+
+
+ERROR: syntax: incomplete: "function" at none:1 requires end
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     bigZ = zeros(N,J)
+ERROR: UndefVarError: N not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>        for j=1:J
+
+                  bigZ[:,j] = Z[:,j]-Z[:,J]
+
+              end
+ERROR: UndefVarError: J not defined
+Stacktrace:
+ [1] top-level scope at .\none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     P = num./repeat(dem,1,J)
+ERROR: UndefVarError: dem not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     loglike = -sum( bigY.*log.(P) )
+ERROR: UndefVarError: P not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>     return loglike
+ERROR: UndefVarError: loglike not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> end
+ERROR: syntax: unexpected "end"
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> println(loglikelihood)
+loglikelihood
