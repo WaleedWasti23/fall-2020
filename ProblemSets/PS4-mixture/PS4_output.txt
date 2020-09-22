@@ -1,0 +1,483 @@
+julia> using Optim, HTTP, GLM, LinearAlgebra, Random, Statistics, DataFrames, CSV, FreqTables,Distributions
+
+julia> 
+
+julia> include("lgwt.jl")
+lgwt (generic function with 3 methods)
+
+julia> 
+
+julia> #data
+
+julia> 
+
+julia> #function PS4()
+
+julia> 
+
+julia> url = "https://raw.githubusercontent.com/OU-PhD-Econometrics/fall-2020/master/ProblemSets/PS4-mixture/nlsw88t.csv"
+"https://raw.githubusercontent.com/OU-PhD-Econometrics/fall-2020/master/ProblemSets/PS4-mixture/nlsw88t.csv"
+
+julia> 
+
+julia> df = CSV.read(HTTP.get(url).body)
+28365×14 DataFrame. Omitted printing of 1 columns
+│ Row   │ idcode │ year  │ age   │ collgrad │ occ_code │ white │ elnwage1 │ elnwage2 │ elnwage3 │ elnwage4 │ elnwage5 │ elnwage6 │ elnwage7 │
+│       │ Int64  │ Int64 │ Int64 │ Int64    │ Int64    │ Int64 │ Float64  │ Float64  │ Float64  │ Float64  │ Float64  │ Float64  │ Float64  │
+├───────┼────────┼───────┼───────┼──────────┼──────────┼───────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+│ 1     │ 1      │ 70    │ 18    │ 0        │ 3        │ 0     │ 1.54409  │ 1.39779  │ 1.5373   │ 1.24634  │ 1.32091  │ 1.38799  │ 1.05836  │
+│ 2     │ 1      │ 71    │ 19    │ 0        │ 6        │ 0     │ 1.57714  │ 1.3839   │ 1.54069  │ 1.2108   │ 1.30514  │ 1.37949  │ 1.11104  │
+│ 3     │ 1      │ 72    │ 20    │ 0        │ 6        │ 0     │ 1.62328  │ 1.43399  │ 1.56725  │ 1.24377  │ 1.36105  │ 1.40231  │ 1.15108  │
+⋮
+│ 28362 │ 5159   │ 82    │ 37    │ 0        │ 3        │ 0     │ 2.08588  │ 2.02912  │ 1.82842  │ 1.66922  │ 1.83895  │ 1.63654  │ 1.46526  │
+│ 28363 │ 5159   │ 83    │ 38    │ 0        │ 3        │ 0     │ 2.09237  │ 2.04127  │ 1.82969  │ 1.67808  │ 1.8304   │ 1.63745  │ 1.4634   │
+│ 28364 │ 5159   │ 85    │ 40    │ 0        │ 3        │ 0     │ 2.09874  │ 2.05925  │ 1.82803  │ 1.69177  │ 1.80256  │ 1.63561  │ 1.4527   │
+│ 28365 │ 5159   │ 88    │ 43    │ 0        │ 3        │ 0     │ 2.09177  │ 2.07041  │ 1.81499  │ 1.70226  │ 1.73394  │ 1.62373  │ 1.41919  │
+
+julia> 
+
+julia> X = [df.age df.white df.collgrad]
+28365×3 Array{Int64,2}:
+ 18  0  0
+ 19  0  0
+ 20  0  0
+ 21  0  0
+ 23  0  0
+  ⋮
+ 35  0  0
+ 37  0  0
+ 38  0  0
+ 40  0  0
+ 43  0  0
+
+julia> 
+
+julia> Z = hcat(df.elnwage1, df.elnwage2, df.elnwage3, df.elnwage4,
+
+       df.elnwage5, df.elnwage6, df.elnwage7, df.elnwage8)
+28365×8 Array{Float64,2}:
+ 1.54409  1.39779  1.5373   1.24634  1.32091  1.38799  1.05836  1.48378
+ 1.57714  1.3839   1.54069  1.2108   1.30514  1.37949  1.11104  1.48257
+ 1.62328  1.43399  1.56725  1.24377  1.36105  1.40231  1.15108  1.49813
+ 1.66722  1.48198  1.5924   1.27541  1.41339  1.42391  1.18879  1.5135
+ 1.74848  1.57162  1.6385   1.33467  1.50731  1.46346  1.25723  1.54368
+ ⋮                                            ⋮
+ 2.0663   1.9985   1.82166  1.64749  1.8453   1.63107  1.462    1.72579
+ 2.08588  2.02912  1.82842  1.66922  1.83895  1.63654  1.46526  1.75066
+ 2.09237  2.04127  1.82969  1.67808  1.8304   1.63745  1.4634   1.76282
+ 2.09874  2.05925  1.82803  1.69177  1.80256  1.63561  1.4527   1.78655
+ 2.09177  2.07041  1.81499  1.70226  1.73394  1.62373  1.41919  1.82074
+
+julia> 
+
+julia> y = df.occ_code;
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #Question 1
+
+julia> 
+
+julia> #from his solution:
+
+julia> 
+
+julia> function mlogit_with_Z(theta, X, Z, y)
+
+
+ERROR: syntax: incomplete: premature end of input
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>         alpha = theta[1:end-1]
+ERROR: UndefVarError: theta not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>         gamma = theta[end]
+ERROR: UndefVarError: theta not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>         K = size(X,2)
+3
+
+julia> 
+
+julia>         J = length(unique(y))
+8
+
+julia> 
+
+julia>         N = length(y)
+28365
+
+julia> 
+
+julia>         bigY = zeros(N,J)
+28365×8 Array{Float64,2}:
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ ⋮                        ⋮
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+julia> 
+
+julia>         for j=1:J
+
+                   bigY[:,j] = y.==j
+
+               end
+
+julia> 
+
+julia>         bigAlpha = [reshape(alpha,K,J-1) zeros(K)]
+ERROR: UndefVarError: alpha not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>         T = promote_type(eltype(X),eltype(theta))
+ERROR: UndefVarError: theta not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>         num   = zeros(T,N,J)
+ERROR: UndefVarError: T not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>         dem   = zeros(T,N)
+ERROR: UndefVarError: T not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>         for j=1:J
+
+                   num[:,j] = exp.(X*bigAlpha[:,j] .+ (Z[:,j] .- Z[:,J])*gamma)
+
+                   dem .+= num[:,j]
+
+               end
+ERROR: UndefVarError: bigAlpha not defined
+Stacktrace:
+ [1] top-level scope at .\none:3
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>         P = num./repeat(dem,1,J)
+ERROR: UndefVarError: dem not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>         loglike = -sum( bigY.*log.(P) )
+ERROR: UndefVarError: P not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia>         return loglike
+ERROR: UndefVarError: loglike not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia>     end
+ERROR: syntax: unexpected "end"
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #values from PS3
+
+julia> 
+
+julia> startvals=[0.05570767876416688, 0.08342649976722213, -2.344887681361976, 0.04500076157943125, 0.7365771540890512, -3.153244238810631, 
+0.09264606406280998, -0.08417701777996893, -4.273280002738097, 0.023903455659102114, 0.7230648923377259, -3.749393470343111, 0.03608733246865346, -0.6437658344513095, -4.2796847340030375, 0.0853109465190059, -1.1714299392376775, -6.678677013966667, 0.086620198654063, -0.7978777029320784, -4.969132023685069, -0.0941942241795243];
+
+julia> 
+
+julia> #look at this to see why you might need this: http://julianlsolvers.github.io/Optim.jl/v0.9.3/algo/autodiff/
+
+julia> 
+
+julia> td = TwiceDifferentiable(theta -> mlogit_with_Z(theta, X, Z, y), startvals; autodiff = :forward);
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> theta_hat_optim_ad = optimize(td, startvals, LBFGS(), Optim.Options(g_tol = 1e-5, iterations=100_000, show_trace=true, show_every=50))
+ERROR: UndefVarError: mlogit_with_Z not defined
+Stacktrace:
+ [1] (::var"#15#16")(::Array{ForwardDiff.Dual{ForwardDiff.Tag{var"#15#16",Float64},Float64,11},1}) at .\none:1
+ [2] chunk_mode_gradient!(::DiffResults.MutableDiffResult{1,Float64,Tuple{Array{Float64,1}}}, ::var"#15#16", ::Array{Float64,1}, ::ForwardDiff.GradientConfig{ForwardDiff.Tag{var"#15#16",Float64},Float64,11,Array{ForwardDiff.Dual{ForwardDiff.Tag{var"#15#16",Float64},Float64,11},1}}) at C:\Users\walee\.julia\packages\ForwardDiff\sdToQ\src\gradient.jl:140
+ [3] gradient! at C:\Users\walee\.julia\packages\ForwardDiff\sdToQ\src\gradient.jl:37 [inlined]
+ [4] gradient! at C:\Users\walee\.julia\packages\ForwardDiff\sdToQ\src\gradient.jl:33 [inlined]
+ [5] (::NLSolversBase.var"#42#48"{var"#15#16",ForwardDiff.GradientConfig{ForwardDiff.Tag{var"#15#16",Float64},Float64,11,Array{ForwardDiff.Dual{ForwardDiff.Tag{var"#15#16",Float64},Float64,11},1}}})(::Array{Float64,1}, ::Array{Float64,1}) at C:\Users\walee\.julia\packages\NLSolversBase\5oIMo\src\objective_types\twicedifferentiable.jl:130
+ [6] value_gradient!!(::TwiceDifferentiable{Float64,Array{Float64,1},Array{Float64,2},Array{Float64,1}}, ::Array{Float64,1}) at C:\Users\walee\.julia\packages\NLSolversBase\5oIMo\src\interface.jl:82
+ [7] initial_state(::LBFGS{Nothing,LineSearches.InitialStatic{Float64},LineSearches.HagerZhang{Float64,Base.RefValue{Bool}},Optim.var"#22#24"}, ::Optim.Options{Float64,Nothing}, ::TwiceDifferentiable{Float64,Array{Float64,1},Array{Float64,2},Array{Float64,1}}, ::Array{Float64,1}) at C:\Users\walee\.julia\packages\Optim\Agd3B\src\multivariate\solvers\first_order\l_bfgs.jl:158
+ [8] optimize(::TwiceDifferentiable{Float64,Array{Float64,1},Array{Float64,2},Array{Float64,1}}, ::Array{Float64,1}, ::LBFGS{Nothing,LineSearches.InitialStatic{Float64},LineSearches.HagerZhang{Float64,Base.RefValue{Bool}},Optim.var"#22#24"}, ::Optim.Options{Float64,Nothing}) at C:\Users\walee\.julia\packages\Optim\Agd3B\src\multivariate\optimize\optimize.jl:33
+ [9] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #Hessian from ps3
+
+julia> 
+
+julia> theta_hat_mle_ad = theta_hat_optim_ad.minimizer
+ERROR: UndefVarError: theta_hat_optim_ad not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> println(theta_hat_mle_ad)
+ERROR: UndefVarError: theta_hat_mle_ad not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> H  = Optim.hessian!(td, theta_hat_mle_ad)
+ERROR: UndefVarError: theta_hat_mle_ad not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> theta_hat_mle_ad_se = sqrt.(diag(inv(H)))
+ERROR: UndefVarError: H not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> println([theta_hat_mle_ad theta_hat_mle_ad_se])
+ERROR: UndefVarError: theta_hat_mle_ad not defined
+Stacktrace:
+ [1] top-level scope at none:1
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #question 2
+
+julia> 
+
+julia> # now it is positive which makes more sense because increase in log wage should increase utility
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #question 3
+
+julia> 
+
+julia> #part a
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #part b
+
+julia> 
+
+julia> #1
+
+julia> 
+
+julia> nodes, weights = lgwt(7,-10,10);
+
+julia> 
+
+julia> d=Normal(0,2)
+Normal{Float64}(μ=0.0, σ=2.0)
+
+julia> 
+
+julia> sum(weights.*pdf.(d,nodes))
+1.0292356350944871
+
+julia> 
+
+julia> println(sum((nodes.^2).*weights.*pdf.(d,nodes)))
+3.265514281891983
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #2
+
+julia> 
+
+julia> nodes, weights = lgwt(10,-10,10);
+
+julia> 
+
+julia> sum(weights.*pdf.(d,nodes))
+0.9991280955086213
+
+julia> 
+
+julia> println(sum((nodes.^2).*weights.*pdf.(d,nodes)))
+4.038977384853661
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #3
+
+julia> 
+
+julia> # it is close, with more quadrature points it will converge to 4
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #Part C
+
+julia> 
+
+julia> #1
+
+julia> 
+
+julia> d=Normal(0,2)
+Normal{Float64}(μ=0.0, σ=2.0)
+
+julia> 
+
+julia> N=1000000
+1000000
+
+julia> 
+
+julia> x=rand(Uniform(-10, 10 ),N)
+1000000-element Array{Float64,1}:
+ -2.650183045546628
+ -7.437600376916045
+ -6.071917851919584
+  4.897949082256368
+ -0.37416429492358816
+  ⋮
+ -4.79778831001783
+  4.011079234557853
+ -9.097716898043942
+ -1.7920226424262822
+ -6.360371376010128
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> println((20/N)*sum(x.^2 .*(pdf.(d,x))))
+3.9983188303945485
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #2
+
+julia> 
+
+julia> println((20/N)*sum(x .*(pdf.(d,x))))
+-0.0002505746075880842
+
+julia> 
+
+julia> 
+
+julia> 
+
+julia> #3
+
+julia> 
+
+julia> println((20/N)*sum(pdf.(d,x)))
+0.9991463391178852
